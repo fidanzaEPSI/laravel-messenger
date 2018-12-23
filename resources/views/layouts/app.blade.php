@@ -15,8 +15,10 @@
 </head>
 <body>
     <div id="app">
-        @include('layouts.nav')
-
+        @auth
+            @include('layouts.nav')
+        @endauth
+        
         @yield('content')
     </div>
 

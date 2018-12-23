@@ -17083,3 +17083,7 @@ readers do not read off random characters that represent icons */
   background-color: #f2f2f2;
 }
 
+nav {
+  margin-bottom: 20px;
+}
+
