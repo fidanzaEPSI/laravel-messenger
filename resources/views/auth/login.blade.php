@@ -5,7 +5,7 @@
         <div class="row align-items-center">
             <div class="col-6 mx-auto justify-content-center">
                 <div class="card h-100 border-primary" style="margin-top: 50%;">
-                    <div class="card-header text-center"><strong>{{ config('app.name') }}</strong> - Authentification</div>
+                    <div class="card-header text-center"><strong>{{ config('app.name') }}</strong> - Authentication</div>
             
                     <div class="card-body ">
                         <form class="form-horizontal" method="POST" action="{{ route('login') }}" novalidate>
@@ -42,20 +42,28 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                     <label class="form-check-label"> 
-                                        Rester connecté
+                                        Remember me
                                     </label>
                                 </div>
                             </div>
                             
                             <div class="form-group text-center">
                                 <button type="submit" class="btn btn-primary">
-                                    Connexion
+                                        <i class="fas fa-sign-in-alt"></i> Login
                                 </button>
                             </div>
+
+                            <div class="form-group text-center">
+                            </div>
                         </form>
+                        
+
                     </div>
                     <div class="card-footer text-center">
-                        <small class="text-muted">Copyright &copy; <a href="https://github.com/fidanzaEPSI">fidanzaEPSI</a></small>
+                        <p class="card-text">No account yet? <a href="{{ route('register') }}" class="btn btn-secondary" role="button"> 
+                            <i class="fas fa-user-plus"></i>
+                            Register </a>
+                        </p> 
                     </div>
                 </div>
             </div>
