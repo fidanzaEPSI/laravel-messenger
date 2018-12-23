@@ -60,8 +60,7 @@
 
                     </div>
                     <div class="card-footer text-center">
-                        <p class="card-text">No account yet? <a href="{{ route('register') }}" class="btn btn-secondary" role="button"> 
-                            <i class="fas fa-user-plus"></i>
+                        <p class="card-text">No account yet? <a href="{{ route('register') }}" role="link"> 
                             Register </a>
                         </p> 
                     </div>

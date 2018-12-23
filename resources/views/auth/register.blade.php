@@ -56,7 +56,8 @@
         
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn btn-primary">
-                                        Register
+                                        <i class="fas fa-user-plus"></i>
+                                         Create an account 
                                     </button>
                                 </div>
                             </div>
