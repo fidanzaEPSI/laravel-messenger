@@ -11,7 +11,7 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::post('register', 'RegisterController@register');
 });
 
-Route::middleware('auth')->group(function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/conversations', 'ConversationController@index')->name('conversations.index');
     
