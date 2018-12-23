@@ -16,7 +16,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/conversations', 'ConversationController@index')->name('conversations.index');
     
     # Api
-    Route::group(['prefix' => 'webapi', 'namespace' => 'Api'],function () {
+    Route::group(['prefix' => 'webapi', 'namespace' => 'Api'], function () {
         Route::get('/conversations', 'ConversationController@index');
         Route::get('/conversation/{conversation}', 'ConversationController@show');
     });
