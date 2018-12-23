@@ -42,6 +42,6 @@ class User extends Authenticatable
 
     public function avatar($size = 45)
     {
-        return 'https://www.gravatar.com/avatar/' . md5($this->email) . 'x?s=' . $size . '&d=mm';
+        return 'https://www.gravatar.com/avatar/' . md5($this->email) . 'x?s=' . $size . '&default=mp';
     }
 }
