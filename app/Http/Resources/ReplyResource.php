@@ -3,10 +3,9 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\UserResource;
-use App\Http\Resources\ReplyResource;
 use Illuminate\Http\Resources\Json\Resource;
 
-class ConversationResource extends Resource
+class ReplyResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -21,12 +20,7 @@ class ConversationResource extends Resource
             'parent_id' => $this->has('parent') ? $this->parent_id : null,
             'body' => $this->body,
             'created_at' => $this->created_at->diffForHumans(),
-            'last_reply' => $this->last_reply ? $this->last_reply->diffForHumans() : null,
-            'participants_count' => $this->usersExceptCurrentlyAuthenticated->count(),
-            'replies' => ReplyResource::collection($this->replies),
-            'user' => new UserResource($this->user),
-            'users' => UserResource::collection($this->users),
-            'parent' => $this->parent,
+            'user' => new UserResource($this->user)
         ];
     }
 }

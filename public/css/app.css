@@ -17144,10 +17144,6 @@ readers do not read off random characters that represent icons */
   padding: 0.55em 0.5em;
 }
 
-.card-header {
-  background-color: lightgray;
-}
-
 nav {
   margin-bottom: 20px;
 }

@@ -5,3 +5,7 @@ export const setConversations = (state, conversations) => {
 export const setConversationsLoading = (state, status) => {
     state.loadingConversations = status
 }
+
+export const setCurrentConversation = (state, conversation) => {
+    state.currentConversation = conversation.data
+}

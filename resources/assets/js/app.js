@@ -18,6 +18,7 @@ window.Vue = require('vue');
 
 Vue.component('conversations-dashboard', require('./components/ConversationsDashboard.vue'));
 Vue.component('conversations', require('./components/Conversations.vue'));
+Vue.component('conversation', require('./components/Conversation.vue'));
 
 const app = new Vue({
     el: '#app',

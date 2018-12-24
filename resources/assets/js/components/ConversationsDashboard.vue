@@ -5,7 +5,7 @@
             <conversations></conversations>
         </div>
         <div class="col">
-            Conversation
+            <conversation></conversation>
         </div>
     </div>
 </div>

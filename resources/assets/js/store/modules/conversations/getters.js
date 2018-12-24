@@ -5,3 +5,7 @@ export const getAllConversations = (state) => {
 export const loadingConversations = (state) => {
     return state.loadingConversations
 }
+
+export const getCurrentConversation = (state) => {
+    return state.currentConversation
+}

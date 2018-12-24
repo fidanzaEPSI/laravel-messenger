@@ -7,5 +7,13 @@ export default {
                 resolve(response)
             })
         })
-    } 
+    },
+
+    getConversation (id) {
+        return new Promise((resolve, reject) => {
+            axios.get('/webapi/conversations/' + id).then((response) => {
+                resolve(response)
+            })
+        })
+    }
 }
