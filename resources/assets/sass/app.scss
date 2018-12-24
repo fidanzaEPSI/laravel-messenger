@@ -13,15 +13,19 @@
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
+// Components
+@import "./components/loader";
+
 /**
 * Overriding default Bootstrap's classes
 */
+
 .badge {
     padding: 0.55em 0.5em;
 }
 
 .card-header {
-    background-color: darken($body-bg, 5%);
+    background-color: $panel-default-heading-bg;
 }
 
 nav {

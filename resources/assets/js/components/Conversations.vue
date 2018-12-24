@@ -4,11 +4,14 @@
             All conversations
         </div>
         <div class="card-body">
-            <div class="media" v-for="conversation in conversations" :key="conversation.id">
+            <div class="loader" v-if="loading">
+                Loading...
+            </div>
+            <div class="media" v-else-if="conversations.length" v-for="conversation in conversations" :key="conversation.id">
                 <div class="media-body">
-                    <a href="#">{{ conversation.body }}</a>
+                    <a href="#">{{ truncate(conversation.body, { length: 10 }) }}</a>
                     <p class="text-muted">
-                        You and {{ conversation.participants_count }} others
+                        You and {{ conversation.participants_count }} {{ pluralize('other', conversation.participants_count )}}
                     </p>
                     <ul class="list-inline">
                         <li class="list-inline-item">
@@ -24,31 +27,31 @@
                     </ul>
                 </div>
             </div>
+            <div v-else>No conversations</div>
         </div>
     </div>
 </template>
 
 <script>
     import { mapActions, mapGetters } from 'vuex'
+    import { truncate } from 'lodash'
+    import pluralize from 'pluralize'
 
     export default {
         mounted () {
             this.getConversations(1)
         },
-        data () {
-            return {
-                //
-            }
-        },
         methods: {
             ...mapActions({
                 getConversations: 'conversations/getConversations'
             }),
+            truncate,
+            pluralize
         },
         computed: mapGetters({
-            conversations: 'conversations/getAllConversations'
+            conversations: 'conversations/getAllConversations',
+            loading: 'conversations/loadingConversations'
         })
     }
-    
 </script>
 
