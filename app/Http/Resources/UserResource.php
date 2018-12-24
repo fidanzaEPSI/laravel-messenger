@@ -6,14 +6,6 @@ use Illuminate\Http\Resources\Json\Resource;
 
 class UserResource extends Resource
 {
-    protected $avatarSize;
-
-    public function __construct($userResource, int $avatarSize)
-    {
-        parent::__construct($userResource);
-        $this->avatarSize = $avatarSize;
-    }
-
     /**
      * Transform the resource into an array.
      *
@@ -26,7 +18,7 @@ class UserResource extends Resource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'avatar' => $this->avatar($this->avatarSize),
+            'avatar' => $this->avatar(35),
             'created_at' => $this->created_at->diffForHumans(now()),
             'updated_at' => $this->updated_at->diffForHumans(now()),
         ];

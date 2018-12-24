@@ -23,8 +23,8 @@ class ConversationResource extends Resource
             'last_reply' => $this->last_reply ? $this->last_reply->diffForHumans() : null,
             'participants_count' => $this->usersExceptCurrentlyAuthenticated->count(),
             'replies' => $this->replies,
-            'user' => new UserResource($this->user, 25),
-            'users' => $this->users,
+            'user' => new UserResource($this->user),
+            'users' => UserResource::collection($this->users),
             'parent' => $this->parent,
         ];
     }

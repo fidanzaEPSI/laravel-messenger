@@ -1,5 +1,11 @@
+import axios from 'axios';
+
 export default {
-    getConversations (id) {
-        //
+    getConversations (page) {
+        return new Promise((resolve, reject) => {
+            axios.get('/webapi/conversations?page=' + page).then((response) => {
+                resolve(response)
+            })
+        })
     } 
 }

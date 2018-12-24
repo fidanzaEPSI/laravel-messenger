@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import conversations from './modules/conversations'
+import conversations from './modules/conversations/index'
 
 Vue.use(Vuex)
 
