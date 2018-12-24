@@ -20,7 +20,14 @@ class ConversationController extends Controller
     /**
      * Returns a conversation by it's identifier (id)
      */
-    public function show(Conversation $conversation) {
+    public function show(Request $request, Conversation $conversation) 
+    {
+        $this->authorize('show', $conversation);
+
+        if ($conversation->isReply()) {
+            abort(404);
+        }
+
         return new ConversationResource($conversation);
     }
 }

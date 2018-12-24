@@ -22,7 +22,9 @@ class ConversationResource extends Resource
             'created_at' => $this->created_at->diffForHumans(),
             'last_reply' => $this->last_reply ? $this->last_reply->diffForHumans() : null,
             'participants_count' => $this->usersExceptCurrentlyAuthenticated->count(),
-            'replies' => $this->replies,
+            'replies' => $this->replies->map(function ($item) {
+                return new UserResource($item->user);
+            }),
             'user' => new UserResource($this->user),
             'users' => UserResource::collection($this->users),
             'parent' => $this->parent,
