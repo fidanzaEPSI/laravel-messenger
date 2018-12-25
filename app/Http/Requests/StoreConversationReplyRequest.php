@@ -27,4 +27,11 @@ class StoreConversationReplyRequest extends FormRequest
             'body' => 'required|max:500'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'body.required' => 'You must write a message!'
+        ];
+    }
 }

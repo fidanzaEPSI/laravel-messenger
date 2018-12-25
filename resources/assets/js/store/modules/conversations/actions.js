@@ -18,3 +18,12 @@ export const getConversation = ({ dispatch, commit }, id) => {
         window.history.pushState(null, null, `/conversations/${id}`)
     })
 }
+
+export const storeConversationReply = ({ dispatch, commit }, { payload, context }) => {
+    return api.storeConversationReply(payload).then((response) => {
+        commit('appendReplyToConversation', response.data)
+    }).catch((errors) => {
+        context.errors = errors.response.data.errors
+        return Promise.reject('VALIDATION_ERROR')
+    })
+}

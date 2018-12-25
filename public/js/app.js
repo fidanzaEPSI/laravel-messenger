@@ -40972,6 +40972,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setConversationsLoading", function() { return setConversationsLoading; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setConversationLoading", function() { return setConversationLoading; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCurrentConversation", function() { return setCurrentConversation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appendReplyToConversation", function() { return appendReplyToConversation; });
 var setConversations = function setConversations(state, conversations) {
     state.conversations = conversations.data;
 };
@@ -40988,6 +40989,10 @@ var setCurrentConversation = function setCurrentConversation(state, conversation
     state.currentConversation = conversation.data;
 };
 
+var appendReplyToConversation = function appendReplyToConversation(state, reply) {
+    state.currentConversation.replies.unshift(reply.data);
+};
+
 /***/ }),
 /* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -40996,6 +41001,7 @@ var setCurrentConversation = function setCurrentConversation(state, conversation
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConversations", function() { return getConversations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConversation", function() { return getConversation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeConversationReply", function() { return storeConversationReply; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_all__ = __webpack_require__(24);
 
 
@@ -41023,6 +41029,20 @@ var getConversation = function getConversation(_ref2, id) {
     });
 };
 
+var storeConversationReply = function storeConversationReply(_ref3, _ref4) {
+    var dispatch = _ref3.dispatch,
+        commit = _ref3.commit;
+    var payload = _ref4.payload,
+        context = _ref4.context;
+
+    return __WEBPACK_IMPORTED_MODULE_0__api_all__["a" /* default */].storeConversationReply(payload).then(function (response) {
+        commit('appendReplyToConversation', response.data);
+    }).catch(function (errors) {
+        context.errors = errors.response.data.errors;
+        return Promise.reject('VALIDATION_ERROR');
+    });
+};
+
 /***/ }),
 /* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -41044,6 +41064,15 @@ var getConversation = function getConversation(_ref2, id) {
         return new Promise(function (resolve, reject) {
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/webapi/conversations/' + id).then(function (response) {
                 resolve(response);
+            });
+        });
+    },
+    storeConversationReply: function storeConversationReply(payload) {
+        return new Promise(function (resolve, reject) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/webapi/conversations/' + payload.id + '/reply', payload).then(function (response) {
+                resolve(response);
+            }).catch(function (errors) {
+                reject(errors);
             });
         });
     }
@@ -49982,6 +50011,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -49995,17 +50027,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            body: null
+            body: null,
+            errors: []
         };
     },
 
-    methods: {
-        reply: function reply() {}
-    }
+    computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
+        conversation: 'conversations/getCurrentConversation'
+    }),
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
+        'storeConversationReply': 'conversations/storeConversationReply'
+    }), {
+        reply: function reply() {
+            var _this = this;
+
+            var payload = { id: this.conversation.id, body: this.body };
+            this.storeConversationReply({ payload: payload, context: this }).then(function () {
+                _this.body = null;
+            }).catch(function (errors) {
+                console.log(errors);
+            });
+        }
+    })
 });
 
 /***/ }),
@@ -50029,29 +50083,49 @@ var render = function() {
         }
       },
       [
-        _c("div", { staticClass: "form-group" }, [
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.body,
-                expression: "body"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { cols: "30", rows: "4", placeholder: "Reply" },
-            domProps: { value: _vm.body },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          {
+            staticClass: "form-group",
+            class: { "is-invalid": _vm.errors.body }
+          },
+          [
+            _c("div", { staticClass: "input-group" }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.body,
+                    expression: "body"
+                  }
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.errors.body },
+                attrs: { cols: "30", rows: "4", placeholder: "Reply" },
+                domProps: { value: _vm.body },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.body = $event.target.value
+                  }
                 }
-                _vm.body = $event.target.value
-              }
-            }
-          })
-        ]),
+              }),
+              _vm._v(" "),
+              _vm.errors.body
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.errors.body[0]) +
+                        "\n                "
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ]
+        ),
         _vm._v(" "),
         _vm._m(0)
       ]

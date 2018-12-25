@@ -36,9 +36,9 @@ class Conversation extends Model
         return $this->belongsTo(Conversation::class, 'parent_id');
     }
 
-    public function touchLastReply()
+    public function updatelastReply()
     {
-        return $this->setAttribute('last_reply', \Carbon\Carbon::now())->save();
+        return $this->parent->setAttribute('last_reply', \Carbon\Carbon::now())->save();
     }
 
     public function isReply() 

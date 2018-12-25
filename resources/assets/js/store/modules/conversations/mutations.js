@@ -13,3 +13,7 @@ export const setConversationLoading = (state, status) => {
 export const setCurrentConversation = (state, conversation) => {
     state.currentConversation = conversation.data
 }
+
+export const appendReplyToConversation = (state, reply) => {
+    state.currentConversation.replies.unshift(reply.data)
+}

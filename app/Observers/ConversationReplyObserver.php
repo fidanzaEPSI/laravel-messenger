@@ -8,7 +8,7 @@ class ConversationReplyObserver
 {
     public function created(Conversation $conversation)
     {
-        $conversation->touchLastReply();
+        $conversation->updatelastReply();
     }
 
     public function updated(Conversation $conversation)

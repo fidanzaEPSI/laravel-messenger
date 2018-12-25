@@ -20,6 +20,6 @@ class ConversationReplyController extends Controller
         $conversation->replies()->save($reply);
         // $conversation->touchLastReply();
 
-        return new ReplyResource($conversation);
+        return new ReplyResource($reply);
     }
 }
