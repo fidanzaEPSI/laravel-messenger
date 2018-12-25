@@ -49779,6 +49779,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 
@@ -49813,15 +49815,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.conversation
+  return _vm.loading
+    ? _c("div", [
+        _c("div", { staticClass: "loader" }, [
+          _vm._v("\n        Loading...\n    ")
+        ])
+      ])
+    : _vm.conversation
     ? _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body" }, [
-          _vm.loading
-            ? _c("div", { staticClass: "loader" }, [
-                _vm._v("\n            Loading...\n        ")
-              ])
-            : _vm._e(),
-          _vm._v(" "),
           _c("div", { staticClass: "card-title" }, [
             _vm.conversation.users.length
               ? _c(
@@ -49867,9 +49869,9 @@ var render = function() {
                         )
                       ]),
                       _vm._v(
-                        "\n                    " +
+                        "\n                        " +
                           _vm._s(conversation.body) +
-                          "\n                "
+                          "\n                    "
                       )
                     ])
                   ]
@@ -49892,9 +49894,9 @@ var render = function() {
                     )
                   ]),
                   _vm._v(
-                    "\n                    " +
+                    "\n                        " +
                       _vm._s(_vm.conversation.body) +
-                      "\n                "
+                      "\n                    "
                   )
                 ])
               ])
@@ -49903,7 +49905,7 @@ var render = function() {
           )
         ])
       ])
-    : _vm._e()
+    : _c("div", [_vm._v("Pick up a conversation or create one")])
 }
 var staticRenderFns = [
   function() {
