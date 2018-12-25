@@ -1,5 +1,6 @@
 export default {
     conversations: [],
     currentConversation: null,
-    loadingConversations: false
+    loadingConversations: false,
+    loadingConversation: false
 }

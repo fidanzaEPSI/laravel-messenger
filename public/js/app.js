@@ -40957,7 +40957,8 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* harmony default export */ __webpack_exports__["a"] = ({
     conversations: [],
     currentConversation: null,
-    loadingConversations: false
+    loadingConversations: false,
+    loadingConversation: false
 });
 
 /***/ }),
@@ -40968,6 +40969,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setConversations", function() { return setConversations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setConversationsLoading", function() { return setConversationsLoading; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setConversationLoading", function() { return setConversationLoading; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCurrentConversation", function() { return setCurrentConversation; });
 var setConversations = function setConversations(state, conversations) {
     state.conversations = conversations.data;
@@ -40975,6 +40977,10 @@ var setConversations = function setConversations(state, conversations) {
 
 var setConversationsLoading = function setConversationsLoading(state, status) {
     state.loadingConversations = status;
+};
+
+var setConversationLoading = function setConversationLoading(state, status) {
+    state.loadingConversation = status;
 };
 
 var setCurrentConversation = function setCurrentConversation(state, conversation) {
@@ -41007,8 +41013,12 @@ var getConversation = function getConversation(_ref2, id) {
     var dispatch = _ref2.dispatch,
         commit = _ref2.commit;
 
+    commit('setConversationLoading', true);
     __WEBPACK_IMPORTED_MODULE_0__api_all__["a" /* default */].getConversation(id).then(function (response) {
         commit('setCurrentConversation', response.data);
+        commit('setConversationLoading', false);
+
+        window.history.pushState(null, null, '/conversations/' + id);
     });
 };
 
@@ -41914,6 +41924,7 @@ module.exports = function spread(callback) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllConversations", function() { return getAllConversations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadingConversations", function() { return loadingConversations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadingConversation", function() { return loadingConversation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentConversation", function() { return getCurrentConversation; });
 var getAllConversations = function getAllConversations(state) {
     return state.conversations;
@@ -41921,6 +41932,10 @@ var getAllConversations = function getAllConversations(state) {
 
 var loadingConversations = function loadingConversations(state) {
     return state.loadingConversations;
+};
+
+var loadingConversation = function loadingConversation(state) {
+    return state.loadingConversation;
 };
 
 var getCurrentConversation = function getCurrentConversation(state) {
@@ -48918,13 +48933,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        //
-    },
-    data: function data() {
-        return {
-            //
-        };
+    props: {
+        'id': {
+            default: null,
+            type: Number
+        }
     }
 });
 
@@ -48940,7 +48953,12 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-3" }, [_c("conversations")], 1),
       _vm._v(" "),
-      _c("div", { staticClass: "col" }, [_c("conversation")], 1)
+      _c(
+        "div",
+        { staticClass: "col" },
+        [_c("conversation", { attrs: { id: _vm.id } })],
+        1
+      )
     ])
   ])
 }
@@ -49724,6 +49742,10 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -49753,13 +49775,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        'id': {
+            default: null,
+            type: Number
+        }
+    },
     computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
-        conversation: 'conversations/getCurrentConversation'
-    })
+        conversation: 'conversations/getCurrentConversation',
+        loading: 'conversations/loadingConversation'
+    }),
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
+        'getConversation': 'conversations/getConversation'
+    })),
+    mounted: function mounted() {
+        if (!Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["isNull"])(this.id)) {
+            // this.$store.dispatch('conversations/getConversation', this.id) // Alternative syntax without mapping actions
+            this.getConversation(this.id);
+        }
+    }
 });
 
 /***/ }),
@@ -49773,6 +49816,12 @@ var render = function() {
   return _vm.conversation
     ? _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body" }, [
+          _vm.loading
+            ? _c("div", { staticClass: "loader" }, [
+                _vm._v("\n            Loading...\n        ")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", { staticClass: "card-title" }, [
             _vm.conversation.users.length
               ? _c(

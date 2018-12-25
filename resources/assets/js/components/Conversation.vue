@@ -1,6 +1,10 @@
 <template>
+
     <div class="card" v-if="conversation">
         <div class="card-body">
+            <div class="loader" v-if="loading">
+                Loading...
+            </div>
             <div class="card-title">
                 <ul class="list-inline" v-if="conversation.users.length">
                     <li class="list-inline-item"><strong> Participants: </strong></li>
@@ -29,10 +33,29 @@
 
 <script>
     import { mapGetters, mapActions } from 'vuex'
+    import { isNull } from 'lodash'
 
     export default {
+        props: {
+            'id': {
+                default: null,
+                type: Number
+            }
+        },
         computed: mapGetters({
             conversation: 'conversations/getCurrentConversation',
-        })
+            loading: 'conversations/loadingConversation'
+        }),
+        methods: {
+            ...mapActions({
+                'getConversation': 'conversations/getConversation'
+            })
+        },
+        mounted () {
+            if (!isNull(this.id)) {
+                // this.$store.dispatch('conversations/getConversation', this.id) // Alternative syntax without mapping actions
+                this.getConversation(this.id)
+            }
+        }
     }
 </script>
