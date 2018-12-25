@@ -14,6 +14,11 @@ class ConversationPolicy
         return $this->update($user, $conversation);
     }
 
+    public function reply(User $user, Conversation $conversation)
+    {
+        return $this->update($user, $conversation);
+    }
+
     public function update(User $user, Conversation $conversation)
     {
         return $user->isInConversation($conversation);

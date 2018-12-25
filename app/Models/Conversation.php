@@ -9,6 +9,8 @@ class Conversation extends Model
 {
     protected $dates = ['last_reply'];
 
+    protected $fillable = ['body'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
