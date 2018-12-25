@@ -49696,19 +49696,19 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(82)
+  __webpack_require__(86)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(56)
 /* template */
-var __vue_template__ = __webpack_require__(57)
+var __vue_template__ = __webpack_require__(88)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-01c0168c"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -49822,147 +49822,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 });
 
 /***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.loading
-    ? _c("div", [
-        _c("div", { staticClass: "loader" }, [
-          _vm._v("\n        Loading...\n    ")
-        ])
-      ])
-    : _vm.conversation
-    ? _c("div", [
-        _c(
-          "div",
-          { staticClass: "card conversation" },
-          [
-            _c("div", { staticClass: "card-header my-0" }, [
-              _vm.conversation.users.length
-                ? _c(
-                    "ul",
-                    { staticClass: "list-inline" },
-                    [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _vm._l(_vm.conversation.users, function(user) {
-                        return _c(
-                          "li",
-                          { key: user.id, staticClass: "list-inline-item" },
-                          [_vm._v(" " + _vm._s(user.name))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "card-body border-bottom overflow-auto h-50 d-inline-block mb-6"
-              },
-              [
-                _c(
-                  "ul",
-                  { staticClass: "list-unstyled" },
-                  [
-                    _vm._l(_vm.conversation.replies, function(conversation) {
-                      return _c(
-                        "li",
-                        { key: conversation.id, staticClass: "media my-4" },
-                        [
-                          _c("img", {
-                            staticClass: "align-self-center mr-3",
-                            attrs: {
-                              src: conversation.user.avatar,
-                              alt: "avatar"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "media-body" }, [
-                            _c("p", { staticClass: "mt-0 mb-2" }, [
-                              _vm._v(
-                                " " +
-                                  _vm._s(conversation.user.name) +
-                                  " • " +
-                                  _vm._s(conversation.created_at)
-                              )
-                            ]),
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(conversation.body) +
-                                "\n                    "
-                            )
-                          ])
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "media my-4" }, [
-                      _c("img", {
-                        staticClass: "align-self-center mr-3",
-                        attrs: {
-                          src: _vm.conversation.user.avatar,
-                          alt: "avatar"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "media-body" }, [
-                        _c("p", { staticClass: "mt-0 mb-2" }, [
-                          _vm._v(
-                            " " +
-                              _vm._s(_vm.conversation.user.name) +
-                              " • " +
-                              _vm._s(_vm.conversation.created_at)
-                          )
-                        ]),
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(_vm.conversation.body) +
-                            "\n                    "
-                        )
-                      ])
-                    ])
-                  ],
-                  2
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("conversation-reply-form")
-          ],
-          1
-        )
-      ])
-    : _c("div", [_vm._v("Pick up a conversation or create one")])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "list-inline-item" }, [
-      _c("strong", [_vm._v(" Participants: ")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-01c0168c", module.exports)
-  }
-}
-
-/***/ }),
+/* 57 */,
 /* 58 */
 /***/ (function(module, exports) {
 
@@ -50221,46 +50081,8 @@ if (false) {
 }
 
 /***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(83);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(84)("19eb94a8", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-01c0168c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Conversation.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-01c0168c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Conversation.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(61)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.conversation {\n  max-height: 800px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 82 */,
+/* 83 */,
 /* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50520,6 +50342,184 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(87);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(84)("524c4c76", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-01c0168c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Conversation.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-01c0168c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Conversation.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(61)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.conversation[data-v-01c0168c] {\n  max-height: 800px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.loading
+    ? _c("div", [
+        _c("div", { staticClass: "loader" }, [
+          _vm._v("\n        Loading...\n    ")
+        ])
+      ])
+    : _vm.conversation
+    ? _c("div", [
+        _c(
+          "div",
+          { staticClass: "card conversation" },
+          [
+            _c("div", { staticClass: "card-header" }, [
+              _vm.conversation.users.length
+                ? _c(
+                    "ul",
+                    { staticClass: "list-inline my-0" },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _vm._l(_vm.conversation.users, function(user) {
+                        return _c(
+                          "li",
+                          { key: user.id, staticClass: "list-inline-item" },
+                          [_vm._v(" " + _vm._s(user.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-body border-bottom overflow-auto" },
+              [
+                _c(
+                  "ul",
+                  { staticClass: "list-unstyled" },
+                  [
+                    _vm._l(_vm.conversation.replies, function(conversation) {
+                      return _c(
+                        "li",
+                        { key: conversation.id, staticClass: "media my-4" },
+                        [
+                          _c("img", {
+                            staticClass: "align-self-center mr-3",
+                            attrs: {
+                              src: conversation.user.avatar,
+                              alt: "avatar"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "media-body" }, [
+                            _c("p", { staticClass: "mt-0 mb-2" }, [
+                              _vm._v(
+                                " " +
+                                  _vm._s(conversation.user.name) +
+                                  " • " +
+                                  _vm._s(conversation.created_at)
+                              )
+                            ]),
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(conversation.body) +
+                                "\n                    "
+                            )
+                          ])
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "media my-4" }, [
+                      _c("img", {
+                        staticClass: "align-self-center mr-3",
+                        attrs: {
+                          src: _vm.conversation.user.avatar,
+                          alt: "avatar"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "media-body" }, [
+                        _c("p", { staticClass: "mt-0 mb-2" }, [
+                          _vm._v(
+                            " " +
+                              _vm._s(_vm.conversation.user.name) +
+                              " • " +
+                              _vm._s(_vm.conversation.created_at)
+                          )
+                        ]),
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.conversation.body) +
+                            "\n                    "
+                        )
+                      ])
+                    ])
+                  ],
+                  2
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("conversation-reply-form")
+          ],
+          1
+        )
+      ])
+    : _c("div", [_vm._v("Pick up a conversation or create one")])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-inline-item" }, [
+      _c("strong", [_vm._v(" Participants: ")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-01c0168c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

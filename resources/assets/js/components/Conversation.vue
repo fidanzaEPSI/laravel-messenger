@@ -7,14 +7,14 @@
     </div>
     <div v-else-if="conversation">
         <div class="card conversation">
-            <div class="card-header my-0">
+            <div class="card-header">
                 <!-- Participants -->
-                <ul class="list-inline" v-if="conversation.users.length">
+                <ul class="list-inline my-0" v-if="conversation.users.length">
                     <li class="list-inline-item"><strong> Participants: </strong></li>
                     <li class="list-inline-item" v-for="user in conversation.users" :key="user.id"> {{ user.name }}</li>
                 </ul>
             </div>
-            <div class="card-body border-bottom overflow-auto h-50 d-inline-block mb-6">
+            <div class="card-body border-bottom overflow-auto">
                 <!-- Conversation -->
                 <ul class="list-unstyled">
                     <!-- Replies -->
@@ -71,7 +71,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .conversation {
         max-height: 800px;
     }
