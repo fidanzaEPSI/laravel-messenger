@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container h-100">
-        <div class="row align-items-center">
-            <div class="col-6 mx-auto justify-content-center">
-                <div class="card h-100 border-primary" style="margin-top: 50%;">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="card border-primary" style="margin-top: 25%; margin-bottom: 25%;">
                     <div class="card-header text-center"><strong>{{ config('app.name') }}</strong> - Registration</div>
             
                     <div class="card-body ">
