@@ -11,6 +11,7 @@
                         <li class="list-inline-item"><strong> Participants: </strong></li>
                         <li class="list-inline-item" v-for="user in conversation.users" :key="user.id"> {{ user.name }}</li>
                     </ul>
+                    <hr>
                 </div>
                 <ul class="list-unstyled">
                     <li class="media my-4" v-for="conversation in conversation.replies" :key="conversation.id">

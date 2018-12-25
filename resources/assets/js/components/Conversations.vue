@@ -9,7 +9,7 @@
             </div>
             <div class="media" v-else-if="conversations.length" v-for="conversation in conversations" :key="conversation.id">
                 <div class="media-body">
-                    <a href="#" @click.prevent="getConversation(conversation.id)">{{ truncate(conversation.body, { length: 10 }) }}</a>
+                    <a href="#" @click.prevent="getConversation(conversation.id)">{{ truncate(conversation.body, { length: 25 }) }}</a>
                     <p class="text-muted">
                         You and {{ conversation.participants_count }} {{ pluralize('other', conversation.participants_count )}}
                     </p>

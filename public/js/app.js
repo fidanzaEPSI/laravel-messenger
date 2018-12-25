@@ -49623,7 +49623,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        _vm._s(_vm.truncate(conversation.body, { length: 10 }))
+                        _vm._s(_vm.truncate(conversation.body, { length: 25 }))
                       )
                     ]
                   ),
@@ -49781,6 +49781,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -49842,7 +49843,9 @@ var render = function() {
                   ],
                   2
                 )
-              : _vm._e()
+              : _vm._e(),
+            _vm._v(" "),
+            _c("hr")
           ]),
           _vm._v(" "),
           _c(
