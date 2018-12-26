@@ -2,14 +2,22 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Conversation extends Model
 {
+    use Searchable;
+    
     protected $dates = ['last_reply'];
 
     protected $fillable = ['body'];
+
+    public function searchableAs()
+    {
+        return 'conversations_index';
+    }
 
     public function user()
     {
