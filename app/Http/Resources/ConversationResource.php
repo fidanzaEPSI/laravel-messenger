@@ -3,8 +3,8 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\UserResource;
-use App\Http\Resources\ReplyResource;
 use Illuminate\Http\Resources\Json\Resource;
+use App\Http\Resources\Replies\{ParentResource, ReplyResource};
 
 class ConversationResource extends Resource
 {
@@ -23,10 +23,10 @@ class ConversationResource extends Resource
             'created_at' => $this->created_at->diffForHumans(),
             'last_reply' => $this->last_reply ? $this->last_reply->diffForHumans() : null,
             'participants_count' => $this->usersExceptCurrentlyAuthenticated->count(),
-            'replies' => ReplyResource::collection($this->replies),
+            'parent' => $this->when($this->isReply(), new ParentResource($this->parent)),
+            'replies' => $this->when(!$this->isReply(), ReplyResource::collection($this->replies)),
             'user' => new UserResource($this->user),
-            'users' => UserResource::collection($this->users),
-            'parent' => $this->parent,
+            'users' => UserResource::collection($this->isReply() ? $this->parent->users : $this->users),
         ];
     }
 }

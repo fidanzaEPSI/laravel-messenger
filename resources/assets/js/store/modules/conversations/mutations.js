@@ -17,3 +17,7 @@ export const setCurrentConversation = (state, conversation) => {
 export const appendReplyToConversation = (state, reply) => {
     state.currentConversation.replies.unshift(reply.data)
 }
+
+export const prependToConversations = (state, conversation) => {
+    console.log(conversation);
+}

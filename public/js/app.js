@@ -40973,6 +40973,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setConversationLoading", function() { return setConversationLoading; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCurrentConversation", function() { return setCurrentConversation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appendReplyToConversation", function() { return appendReplyToConversation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prependToConversations", function() { return prependToConversations; });
 var setConversations = function setConversations(state, conversations) {
     state.conversations = conversations.data;
 };
@@ -40991,6 +40992,10 @@ var setCurrentConversation = function setCurrentConversation(state, conversation
 
 var appendReplyToConversation = function appendReplyToConversation(state, reply) {
     state.currentConversation.replies.unshift(reply.data);
+};
+
+var prependToConversations = function prependToConversations(state, conversation) {
+    console.log(conversation);
 };
 
 /***/ }),
@@ -41037,6 +41042,7 @@ var storeConversationReply = function storeConversationReply(_ref3, _ref4) {
 
     return __WEBPACK_IMPORTED_MODULE_0__api_all__["a" /* default */].storeConversationReply(payload).then(function (response) {
         commit('appendReplyToConversation', response.data);
+        commit('prependToConversations', response.data);
     }).catch(function (errors) {
         context.errors = errors.response.data.errors;
         return Promise.reject('VALIDATION_ERROR');
@@ -49847,6 +49853,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             // this.$store.dispatch('conversations/getConversation', this.id) // Alternative syntax without mapping actions
             this.getConversation(this.id);
         }
+    },
+    updated: function updated() {
+        console.log(this.conversation);
     }
 });
 
