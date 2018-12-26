@@ -67,10 +67,6 @@
                 // this.$store.dispatch('conversations/getConversation', this.id) // Alternative syntax without mapping actions
                 this.getConversation(this.id)
             }
-        },
-        updated ()
-        {
-            console.log(this.conversation);
         }
     }
 </script>

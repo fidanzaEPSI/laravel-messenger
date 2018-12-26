@@ -40995,7 +40995,11 @@ var appendReplyToConversation = function appendReplyToConversation(state, reply)
 };
 
 var prependToConversations = function prependToConversations(state, conversation) {
-    console.log(conversation);
+    state.conversations = state.conversations.filter(function (c) {
+        return c.id !== conversation.data.parent.id;
+    });
+
+    state.conversations.unshift(conversation.data);
 };
 
 /***/ }),
@@ -49853,9 +49857,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             // this.$store.dispatch('conversations/getConversation', this.id) // Alternative syntax without mapping actions
             this.getConversation(this.id);
         }
-    },
-    updated: function updated() {
-        console.log(this.conversation);
     }
 });
 

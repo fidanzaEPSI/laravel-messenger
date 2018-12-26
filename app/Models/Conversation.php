@@ -23,6 +23,9 @@ class Conversation extends Model
 
     public function usersExceptCurrentlyAuthenticated()
     {
+        if ($this->isReply()) {
+            return $this->parent->users()->where('user_id', '!=', Auth::user()->id);
+        }
         return $this->users()->where('user_id', '!=', Auth::user()->id);
     }
 
@@ -38,7 +41,7 @@ class Conversation extends Model
 
     public function updatelastReply()
     {
-        return $this->parent->setAttribute('last_reply', \Carbon\Carbon::now())->save();
+        return $this->setAttribute('last_reply', \Carbon\Carbon::now())->save();
     }
 
     public function isReply() 
