@@ -21,7 +21,7 @@ class ConversationResource extends Resource
             'parent_id' => $this->has('parent') ? $this->parent_id : null,
             'body' => $this->body,
             'created_at' => $this->created_at->diffForHumans(),
-            'last_reply' => $this->last_reply ? $this->last_reply->diffForHumans() : null,
+            'last_reply' => $this->last_reply ? $this->last_reply->diffForHumans() : $this->parent->last_reply->diffForHumans(),
             'participants_count' => $this->usersExceptCurrentlyAuthenticated->count(),
             'parent' => $this->when($this->isReply(), new ParentResource($this->parent)),
             'replies' => $this->when(!$this->isReply(), ReplyResource::collection($this->replies)),

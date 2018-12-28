@@ -18,8 +18,7 @@ class ConversationReplyController extends Controller
         ])->user()->associate($request->user());
 
         $conversation->replies()->save($reply);
-        // $conversation->touchLastReply();
-
+        
         return new ConversationResource($reply);
     }
 }

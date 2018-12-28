@@ -37,8 +37,8 @@
                 let payload = { id: this.conversation.id, body: this.body }
                 this.storeConversationReply({ payload, context: this }).then(() => {
                     this.body = null
-                }).catch((errors) => {
-                    console.log(errors);
+                }).catch((error) => {
+                    // console.log(error.response.data);
                 })
             }
         }   
