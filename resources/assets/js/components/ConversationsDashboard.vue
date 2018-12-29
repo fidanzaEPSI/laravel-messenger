@@ -3,6 +3,7 @@
     <div class="row">
         <div class="col-3">
             <conversations></conversations>
+            <conversation-form></conversation-form>
         </div>
         <div class="col">
             <conversation :id="id"></conversation>
