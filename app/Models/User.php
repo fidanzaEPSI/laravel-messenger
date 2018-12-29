@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +27,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function searchableAs()
+    {
+        return 'users_index';
+    }
 
     public function conversations()
     {
