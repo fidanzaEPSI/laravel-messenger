@@ -21,6 +21,16 @@ export const getConversation = ({ dispatch, commit }, id) => {
 export const storeConversationReply = ({ dispatch, commit }, { payload, context }) => {
     return api.storeConversationReply(payload).then((response) => {
         commit('appendReplyToConversation', response.data)
+        commit('prependToConversations', response.data.data)
+    }).catch((errors) => {
+        context.errors = errors.response.data.errors
+        return Promise.reject('VALIDATION_ERROR')
+    })
+}
+
+export const storeConversation = ({ dispatch, commit }, { payload, context }) => {
+    return api.storeConversation(payload).then((response) => {
+        commit('setCurrentConversation', response.data)
         commit('prependToConversations', response.data)
     }).catch((errors) => {
         context.errors = errors.response.data.errors

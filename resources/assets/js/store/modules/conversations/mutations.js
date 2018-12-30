@@ -20,8 +20,8 @@ export const appendReplyToConversation = (state, reply) => {
 
 export const prependToConversations = (state, conversation) => {
     state.conversations = state.conversations.filter((c) => {
-        return c.id !== conversation.data.parent.id
+        return c.id === conversation.id
     })
 
-    state.conversations.unshift(conversation.data)
+    state.conversations.unshift(conversation)
 }

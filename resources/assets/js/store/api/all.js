@@ -25,5 +25,15 @@ export default {
                 reject(errors)
             })
         })
+    },
+
+    storeConversation (payload) {
+        return new Promise((resolve, reject) => {
+            axios.post(`/webapi/conversations`, payload).then((response) => {
+                resolve(response)
+            }).catch((errors) => {
+                reject(errors)
+            })
+        })
     }
 }

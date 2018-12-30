@@ -18,7 +18,7 @@ class ConversationResource extends Resource
     {
         return [
             'id' => $this->id,
-            'parent_id' => $this->has('parent') ? $this->parent_id : null,
+            'parent_id' => $this->parent ? $this->parent->id : null,
             'body' => $this->body,
             'created_at' => $this->created_at->diffForHumans(),
             'last_reply' => $this->last_reply ? $this->last_reply->diffForHumans() : $this->parent->last_reply->diffForHumans(),
