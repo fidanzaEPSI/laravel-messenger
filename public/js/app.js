@@ -42470,10 +42470,10 @@ var appendReplyToConversation = function appendReplyToConversation(state, reply)
 
 var prependToConversations = function prependToConversations(state, conversation) {
     state.conversations = state.conversations.filter(function (c) {
-        return c.id === conversation.id;
+        return c.id === conversation.data.id;
     });
 
-    state.conversations.unshift(conversation);
+    state.conversations.unshift(conversation.data);
 };
 
 /***/ }),
@@ -42521,7 +42521,7 @@ var storeConversationReply = function storeConversationReply(_ref3, _ref4) {
 
     return __WEBPACK_IMPORTED_MODULE_0__api_all__["a" /* default */].storeConversationReply(payload).then(function (response) {
         commit('appendReplyToConversation', response.data);
-        commit('prependToConversations', response.data.data);
+        commit('prependToConversations', response.data);
     }).catch(function (errors) {
         context.errors = errors.response.data.errors;
         return Promise.reject('VALIDATION_ERROR');

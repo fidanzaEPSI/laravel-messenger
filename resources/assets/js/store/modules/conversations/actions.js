@@ -21,7 +21,7 @@ export const getConversation = ({ dispatch, commit }, id) => {
 export const storeConversationReply = ({ dispatch, commit }, { payload, context }) => {
     return api.storeConversationReply(payload).then((response) => {
         commit('appendReplyToConversation', response.data)
-        commit('prependToConversations', response.data.data)
+        commit('prependToConversations', response.data)
     }).catch((errors) => {
         context.errors = errors.response.data.errors
         return Promise.reject('VALIDATION_ERROR')
