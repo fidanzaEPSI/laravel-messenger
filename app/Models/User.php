@@ -36,7 +36,6 @@ class User extends Authenticatable
     public function conversations()
     {
         return $this->belongsToMany(Conversation::class)
-            ->with('replies.user')
             ->whereNull('parent_id')
             ->orderBy('last_reply', 'desc');
     }

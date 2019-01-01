@@ -23,9 +23,6 @@ class Conversation extends Model
 
     public function usersExceptCurrentlyAuthenticated()
     {
-        if ($this->isReply()) {
-            return $this->parent->users()->where('user_id', '!=', Auth::user()->id);
-        }
         return $this->users()->where('user_id', '!=', Auth::user()->id);
     }
 

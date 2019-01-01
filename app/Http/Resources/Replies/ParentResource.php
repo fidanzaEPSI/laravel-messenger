@@ -19,7 +19,9 @@ class ParentResource extends Resource
             'id' => $this->id,
             'body' => $this->body,
             'created_at' => $this->created_at->diffForHumans(),
-            'user' => new UserResource($this->user)
+            'user' => new UserResource($this->user),
+            'users' => UserResource::collection($this->users),
+            'replies' => ReplyResource::collection($this->replies),
         ];
     }
 }

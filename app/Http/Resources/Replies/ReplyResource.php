@@ -21,6 +21,7 @@ class ReplyResource extends Resource
             'body' => $this->body,
             'created_at' => $this->created_at->diffForHumans(),
             'user' => new UserResource($this->user),
+            'users' => UserResource::collection($this->users),
         ];
     }
 }
