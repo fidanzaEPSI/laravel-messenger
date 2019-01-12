@@ -25,3 +25,13 @@ export const prependToConversations = (state, conversation) => {
 
     state.conversations.unshift(conversation)
 }
+
+export const updateConversationInList = (state, conversation) => {
+    state.conversations = state.conversations.map((item) => {
+        if (item.id === conversation.id) {
+            return conversation
+        }
+
+        return item
+    })
+}

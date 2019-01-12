@@ -41,6 +41,7 @@ export const storeConversation = ({ dispatch, commit }, { payload, context }) =>
 export const addConversationUsers = ({ dispatch, commit }, { payload, context }) => {
     return api.addConversationUser(payload).then((response) => {
         commit('setCurrentConversation', response.data)
+        commit('updateConversationInList', response.data.data)
     }).catch((errors) => {
         context.errors = errors.response.data.errors
         return Promise.reject('VALIDATION_ERROR')
