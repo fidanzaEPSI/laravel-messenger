@@ -3,7 +3,10 @@
         <!-- Actions -->
         <ul class="list-unstyled">
             <li class="list-item my-2">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#addUsersModal">Add participants</button>
+                <button class="btn btn btn-primary " data-toggle="modal" data-target="#addUsersModal"> 
+                    <i class="fas fa-plus-square mr-2 fa-lg"></i> 
+                    Add participants 
+                </button>
             </li>
             <!-- <li class="list-item my-2">
                 <button class="btn btn-danger" @click.prevent="addUser">Delete conversation</button>
@@ -21,16 +24,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" @submit.prevent="submit">
-                <div class="form-group" :class="{ 'is-invalid': errors.recipients }">
-                    <label for="users">Search users :</label>
-                    <div class="input-group">
-                        <input type="text" id="add-users" class="form-control" :class="{ 'is-invalid': errors.recipients }" placeholder="Start typing to find a user...">
-                        <div class="invalid-feedback" v-if="errors.recipients">
-                            {{ errors.recipients[0] }}
+                <form action="#" class="needs-validation" @submit.prevent="submit" novalidate>
+                    <div class="form-group" :class="{ 'is-invalid': errors.recipients }">
+                        <div class="input-group">
+                        <label for="add-users">Search users :</label>
+                            <input type="text" id="add-users" class="form-control" :class="{ 'is-invalid': errors.recipients }" placeholder="Start typing to find a user...">
+                            <div class="invalid-feedback d-block" v-if="errors.recipients">
+                                {{ errors.recipients[0] }}
+                            </div>
                         </div>
                     </div>
-                </div>
 
                     <ul class="list-inline" v-if="recipients.length">
                         <li class="list-inline-item" v-for="recipient in recipients" :key="recipient.id">
@@ -93,8 +96,9 @@
                 this.addUsersInConversation({ payload, context: this}).then(() => {
                     this.recipients = []
                     $('#addUsersModal').modal('hide')
+                    // $('.invalid-feedback').hide()
                 }).catch((errors) => {
-                    //
+                    // $('.invalid-feedback').show()
                 })
             }
         },

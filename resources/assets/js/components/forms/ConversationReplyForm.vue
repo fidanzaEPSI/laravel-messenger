@@ -1,9 +1,9 @@
 <template>
     <div class="col-6 my-4">
-        <form action="#" @submit.prevent="reply">
+        <form action="#" id="formReply" @submit.prevent="reply">
             <div class="form-group" :class="{ 'is-invalid': errors.body }">
                 <div class="input-group">
-                    <textarea v-model="body" cols="20" rows="4" class="form-control" :class="{ 'is-invalid': errors.body }" placeholder="Reply"></textarea>
+                    <textarea @keydown="inputHandler" v-model.trim="body" cols="20" rows="4" class="form-control" :class="{ 'is-invalid': errors.body }" placeholder="Reply"></textarea>
                     <div class="invalid-feedback" v-if="errors.body">
                         {{ errors.body[0] }}
                     </div>
@@ -40,7 +40,13 @@
                 }).catch((error) => {
                     // console.log(error.response.data);
                 })
-            }
+            },
+            inputHandler(e) {
+                if (e.keyCode === 13 && !e.shiftKey) {
+                    e.preventDefault();
+                    this.reply();
+                }
+            },
         }   
     }
 </script>

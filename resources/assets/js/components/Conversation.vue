@@ -35,6 +35,7 @@
                     </li>
                 </ul>
             </div>
+            
             <div class="row justify-content-between mx-2">
                 <!-- Form reply -->
                 <conversation-reply-form></conversation-reply-form>

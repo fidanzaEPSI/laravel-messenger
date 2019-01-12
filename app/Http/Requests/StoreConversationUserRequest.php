@@ -27,5 +27,12 @@ class StoreConversationUserRequest extends FormRequest
             'recipients' => 'required|array|exists:users,id'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'recipients.required' => 'You must pick up atleast one person'
+        ];
+    }
     
 }

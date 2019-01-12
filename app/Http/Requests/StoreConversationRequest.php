@@ -32,7 +32,8 @@ class StoreConversationRequest extends FormRequest
     public function messages()
     {
         return [
-            'body.required' => 'You must write a message!'
+            'body.required' => 'You must write a message!',
+            'recipients.required' => 'You must pick up atleast one person'
         ];
     }
 }

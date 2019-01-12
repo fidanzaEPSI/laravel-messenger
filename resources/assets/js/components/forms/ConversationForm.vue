@@ -9,7 +9,7 @@
                     <label for="users">Search users :</label>
                     <div class="input-group">
                         <input type="text" id="users" class="form-control" :class="{ 'is-invalid': errors.recipients }" placeholder="Start typing to find a user...">
-                        <div class="invalid-feedback" v-if="errors.recipients">
+                        <div class="invalid-feedback d-block" v-if="errors.recipients">
                             {{ errors.recipients[0] }}
                         </div>
                     </div>
