@@ -35,8 +35,12 @@
                     </li>
                 </ul>
             </div>
-            <!-- Form reply -->
-            <conversation-reply-form></conversation-reply-form>
+            <div class="row justify-content-between mx-2">
+                <!-- Form reply -->
+                <conversation-reply-form></conversation-reply-form>
+                <!-- Add user -->
+                <conversation-add-user-form></conversation-add-user-form>
+            </div>
         </div>
     </div>
     <div v-else>Pick up a conversation or create one</div>

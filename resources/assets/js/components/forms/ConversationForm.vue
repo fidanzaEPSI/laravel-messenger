@@ -42,8 +42,8 @@
 
 <script>
     import { usersAutocomplete } from '@/helpers'
-    import { isEmpty } from 'lodash'
     import { mapActions, mapGetters } from 'vuex'
+    import { isEmpty } from 'lodash'
 
     export default {
         

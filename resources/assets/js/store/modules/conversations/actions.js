@@ -37,3 +37,7 @@ export const storeConversation = ({ dispatch, commit }, { payload, context }) =>
         return Promise.reject('VALIDATION_ERROR')
     })
 }
+
+export const addConversationUsers = ({ dispatch, commit }, { payload, context }) => {
+    console.log(payload);
+}

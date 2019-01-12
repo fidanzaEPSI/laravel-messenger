@@ -4,10 +4,10 @@ import algoliasearch from 'algoliasearch'
 var index = algoliasearch('DKNXL06GMM', 'b7aa0811ac3575fbc3ac715f3b0d4c84')
 
 export const usersAutocomplete = selector => {
-    index = index.initIndex('users_index')
+    var users = index.initIndex('users_index')
 
     return autocomplete(selector, {}, {
-        source: autocomplete.sources.hits(index, { hitsPerPage: 10 }),
+        source: autocomplete.sources.hits(users, { hitsPerPage: 10 }),
         displayKey: 'name',
         templates: {
             suggestion (suggestion) {

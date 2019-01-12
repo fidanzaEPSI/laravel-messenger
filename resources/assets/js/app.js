@@ -21,6 +21,7 @@ Vue.component('conversations', require('./components/Conversations.vue'));
 Vue.component('conversation', require('./components/Conversation.vue'));
 Vue.component('conversation-reply-form', require('./components/forms/ConversationReplyForm.vue'));
 Vue.component('conversation-form', require('./components/forms/ConversationForm.vue'));
+Vue.component('conversation-add-user-form', require('./components/forms/ConversationAddUserForm.vue'));
 
 const app = new Vue({
     el: '#app',

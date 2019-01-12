@@ -3,7 +3,7 @@
         <form action="#" @submit.prevent="reply">
             <div class="form-group" :class="{ 'is-invalid': errors.body }">
                 <div class="input-group">
-                    <textarea v-model="body" cols="30" rows="4" class="form-control" :class="{ 'is-invalid': errors.body }" placeholder="Reply"></textarea>
+                    <textarea v-model="body" cols="20" rows="4" class="form-control" :class="{ 'is-invalid': errors.body }" placeholder="Reply"></textarea>
                     <div class="invalid-feedback" v-if="errors.body">
                         {{ errors.body[0] }}
                     </div>
