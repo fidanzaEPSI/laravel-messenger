@@ -1,4 +1,4 @@
-import api from '../../api/all'
+import api from '@/store/api/all'
 
 export const getConversations = ({ dispatch, commit }, page) => {
     commit('setConversationsLoading', true)
