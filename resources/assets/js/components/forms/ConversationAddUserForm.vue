@@ -91,6 +91,7 @@
                 let recipients = this.recipients.map(item => item.id)
                 let payload = { id: this.conversation.id, recipients }
                 this.addUsersInConversation({ payload, context: this}).then(() => {
+                    this.recipients = []
                     $('#addUsersModal').modal('hide')
                 }).catch((errors) => {
                     //
