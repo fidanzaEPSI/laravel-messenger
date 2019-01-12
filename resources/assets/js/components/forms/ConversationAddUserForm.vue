@@ -85,12 +85,12 @@
                 this.recipients = recipients
             },
             ...mapActions({
-                'addConversationUsers': 'conversations/addConversationUsers'
+                'addUsersInConversation': 'conversations/addUsersInConversation'
             }),
             submit () {
                 let recipients = this.recipients.map(item => item.id)
                 let payload = { id: this.conversation.id, recipients }
-                this.addConversationUsers({ payload, context: this}).then(() => {
+                this.addUsersInConversation({ payload, context: this}).then(() => {
                     $('#addUsersModal').modal('hide')
                 }).catch((errors) => {
                     //

@@ -38,9 +38,9 @@ export const storeConversation = ({ dispatch, commit }, { payload, context }) =>
     })
 }
 
-export const addConversationUsers = ({ dispatch, commit }, { payload, context }) => {
-    return api.addConversationUser(payload).then((response) => {
-        commit('setCurrentConversation', response.data)
+export const addUsersInConversation = ({ dispatch, commit }, { payload, context }) => {
+    return api.addUsersInConversation(payload).then((response) => {
+        commit('updateUsersInConversation', response.data.data)
         commit('updateConversationInList', response.data.data)
     }).catch((errors) => {
         context.errors = errors.response.data.errors

@@ -26,6 +26,10 @@ export const prependToConversations = (state, conversation) => {
     state.conversations.unshift(conversation)
 }
 
+export const updateUsersInConversation = (state, conversation) => {
+    state.currentConversation.users = conversation.users
+}
+
 export const updateConversationInList = (state, conversation) => {
     state.conversations = state.conversations.map((item) => {
         if (item.id === conversation.id) {
