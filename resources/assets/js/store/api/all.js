@@ -35,5 +35,15 @@ export default {
                 reject(errors)
             })
         })
+    },
+
+    addConversationUser (payload) {
+        return new Promise((resolve, reject) => {
+            axios.post(`/webapi/conversations/${payload.id}/users`, payload).then((response) => {
+                resolve(response)
+            }).catch((errors) => {
+                reject(errors)
+            })
+        })
     }
 }

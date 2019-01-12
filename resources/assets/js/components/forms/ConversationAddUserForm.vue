@@ -5,9 +5,9 @@
             <li class="list-item my-2">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#addUsersModal">Add participants</button>
             </li>
-            <li class="list-item my-2">
+            <!-- <li class="list-item my-2">
                 <button class="btn btn-danger" @click.prevent="addUser">Delete conversation</button>
-            </li>
+            </li> -->
         </ul>
 
         <!-- Modal -->
@@ -22,9 +22,15 @@
             </div>
             <div class="modal-body">
                 <form action="#" @submit.prevent="submit">
-                    <div class="form-group">
+                <div class="form-group" :class="{ 'is-invalid': errors.recipients }">
+                    <label for="users">Search users :</label>
+                    <div class="input-group">
                         <input type="text" id="add-users" class="form-control" :class="{ 'is-invalid': errors.recipients }" placeholder="Start typing to find a user...">
+                        <div class="invalid-feedback" v-if="errors.recipients">
+                            {{ errors.recipients[0] }}
+                        </div>
                     </div>
+                </div>
 
                     <ul class="list-inline" v-if="recipients.length">
                         <li class="list-inline-item" v-for="recipient in recipients" :key="recipient.id">
@@ -50,6 +56,9 @@
     import { isEmpty } from 'lodash'
 
     export default {
+        computed: mapGetters({ 
+            'conversation': 'conversations/getCurrentConversation',
+        }),
         mounted () {
             var users = usersAutocomplete('#add-users').on('autocomplete:selected', (e, selection) => {
                 this.addRecipient(selection)
@@ -80,7 +89,7 @@
             }),
             submit () {
                 let recipients = this.recipients.map(item => item.id)
-                let payload = { recipients }
+                let payload = { id: this.conversation.id, recipients }
                 this.addConversationUsers({ payload, context: this}).then(() => {
                     $('#addUsersModal').modal('hide')
                 }).catch((errors) => {

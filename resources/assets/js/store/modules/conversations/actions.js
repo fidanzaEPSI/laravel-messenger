@@ -39,5 +39,10 @@ export const storeConversation = ({ dispatch, commit }, { payload, context }) =>
 }
 
 export const addConversationUsers = ({ dispatch, commit }, { payload, context }) => {
-    console.log(payload);
+    return api.addConversationUser(payload).then((response) => {
+        commit('setCurrentConversation', response.data)
+    }).catch((errors) => {
+        context.errors = errors.response.data.errors
+        return Promise.reject('VALIDATION_ERROR')
+    })
 }
