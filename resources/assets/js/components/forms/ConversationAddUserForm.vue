@@ -19,12 +19,12 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addUsersModalCenterTitle">Adding participants</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" @click.prevent="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" class="needs-validation" @submit.prevent="submit" novalidate>
+                <form action="#" id="add-users-form" @submit.prevent="submit">
                     <div class="form-group" :class="{ 'is-invalid': errors.recipients }">
                         <div class="input-group">
                         <label for="add-users">Search users :</label>
@@ -43,7 +43,7 @@
 
                     <div class="modal-footer">
                         <button class="btn btn-primary" type="submit">Add</button>
-                        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-secondary" @click.prevent="close">Close</button>
                     </div>
                 </form>
             </div>
@@ -96,10 +96,13 @@
                 this.addUsersInConversation({ payload, context: this}).then(() => {
                     this.recipients = []
                     $('#addUsersModal').modal('hide')
-                    // $('.invalid-feedback').hide()
                 }).catch((errors) => {
-                    // $('.invalid-feedback').show()
+                    //
                 })
+            },
+            close () {
+                setTimeout(() => { this.errors.length ? '' : this.errors = [] }, 500)
+                $('#addUsersModal').modal('hide')
             }
         },
         data () {
