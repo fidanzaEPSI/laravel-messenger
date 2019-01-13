@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\User;
+use App\Models\Conversation;
+
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -11,10 +14,10 @@
 |
 */
 
-Broadcast::channel('user.*', function ($user, $userId) {
+Broadcast::channel('user.*', function (User $user, $userId) {
     return (int) $user->id === (int) $userId;
 });
 
-Broadcast::channel('conversation.*', function ($user, $conversationId) {
+Broadcast::channel('conversation.*', function (User $user, $conversationId) {
     return $user->isInConversation(Conversation::find($conversationId));
 });
