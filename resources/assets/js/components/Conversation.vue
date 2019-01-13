@@ -5,7 +5,7 @@
             Loading...
         </div>
     </div>
-    <div v-else-if="conversation">
+    <transition name="slide-fade" v-else-if="conversation">
         <div class="card conversation">
             <div class="card-header">
                 <!-- Participants -->
@@ -43,7 +43,7 @@
                 <conversation-add-user-form></conversation-add-user-form>
             </div>
         </div>
-    </div>
+        </transition>
     <div v-else>Pick up a conversation or create one</div>
 </template>
 
@@ -79,5 +79,14 @@
 <style lang="scss" scoped>
     .conversation {
         max-height: 800px;
+    }
+
+    .slide-fade-enter-active {
+        transition: all .5s ease;
+    }
+
+    .slide-fade-enter, .slide-fade-leave-to {
+        transform: translateX(20px);
+        opacity: 0;
     }
 </style>
