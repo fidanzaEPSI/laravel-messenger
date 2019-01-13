@@ -101,7 +101,10 @@
                 })
             },
             close () {
-                setTimeout(() => { this.errors.length ? '' : this.errors = [] }, 500)
+                setTimeout(() => { 
+                    this.errors = []
+                    this.recipients = []
+                }, 500)
                 $('#addUsersModal').modal('hide')
             }
         },
