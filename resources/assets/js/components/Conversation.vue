@@ -60,7 +60,7 @@
         },
         computed: mapGetters({
             conversation: 'conversations/getCurrentConversation',
-            loading: 'conversations/loadingConversation'
+            loading: 'conversations/loadingConversation',
         }),
         methods: {
             ...mapActions({

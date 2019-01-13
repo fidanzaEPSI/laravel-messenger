@@ -1,3 +1,7 @@
+export const setCurrentUser = (state, user) => {
+    state.user = user
+}
+
 export const setConversations = (state, conversations) => {
     state.conversations = conversations.data
 }

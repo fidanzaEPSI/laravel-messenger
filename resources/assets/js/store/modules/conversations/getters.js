@@ -13,3 +13,7 @@ export const loadingConversation = (state) => {
 export const getCurrentConversation = (state) => {
     return state.currentConversation
 }
+
+export const getCurrentUser = (state) => {
+    return state.user
+}

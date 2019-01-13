@@ -13,6 +13,7 @@
 </template>
 
 <script>
+    import api from '@/store/api/all'
 
     export default {
         props: {
@@ -20,9 +21,13 @@
                 default: null,
                 type: Number
             }
+        },
+        mounted () {
+            api.getCurrentUser().then((response) => {
+                this.$store.commit('conversations/setCurrentUser', response.data.data)
+            })
         }
     }
-    
 </script>
 
 
