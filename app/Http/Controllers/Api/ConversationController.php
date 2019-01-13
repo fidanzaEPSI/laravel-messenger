@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Conversation;
 use Illuminate\Http\Request;
+use App\Events\ConversationCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ConversationResource;
 use App\Http\Requests\StoreConversationRequest;
@@ -44,6 +45,8 @@ class ConversationController extends Controller
             /** Removes any possible duplicate key and merges the request's sent user ids and the currently authenticated's user id into a new array */
             array_unique(array_merge($request->recipients, [$request->user()->id]))
         );
+
+        broadcast(new ConversationCreated($conversation))->toOthers();
 
         return new ConversationResource($conversation);
     }
