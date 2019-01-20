@@ -15,6 +15,10 @@ export const getConversations = ({ dispatch, commit, state }, page) => {
             .listen('ConversationReplyCreated', (e) => {
                 commit('prependToConversations', e.parent)
             })
+            .listen('ConversationUsersCreated', (e) => {
+                commit('updateUsersInConversation', e.data)
+                commit('updateConversationInList', e.data)
+            })
     })
 }
 
@@ -34,7 +38,10 @@ export const getConversation = ({ dispatch, commit, state }, id) => {
             .listen('ConversationReplyCreated', (e) => {
                 commit('appendReplyToConversation', e)
             })
-            
+            .listen('ConversationUsersCreated', (e) => {
+                commit('updateUsersInConversation', e.data)
+                commit('updateConversationInList', e.data)
+            });
 
         window.history.pushState(null, null, `/conversations/${id}`)
     })
