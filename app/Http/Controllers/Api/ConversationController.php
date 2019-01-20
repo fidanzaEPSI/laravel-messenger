@@ -46,6 +46,8 @@ class ConversationController extends Controller
             array_unique(array_merge($request->recipients, [$request->user()->id]))
         );
 
+        $conversation->load('users');
+        
         broadcast(new ConversationCreated($conversation))->toOthers();
 
         return new ConversationResource($conversation);

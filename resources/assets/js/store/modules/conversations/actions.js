@@ -9,6 +9,9 @@ export const getConversations = ({ dispatch, commit, state }, page) => {
         console.log('User ' + state.user.id + ' logged in.');
         
         Echo.private('user.' + state.user.id)
+            .listen('ConversationCreated', (e) => {
+                commit('prependToConversations', e.data)
+            })
             .listen('ConversationReplyCreated', (e) => {
                 commit('prependToConversations', e.parent)
             })
@@ -31,6 +34,7 @@ export const getConversation = ({ dispatch, commit, state }, id) => {
             .listen('ConversationReplyCreated', (e) => {
                 commit('appendReplyToConversation', e)
             })
+            
 
         window.history.pushState(null, null, `/conversations/${id}`)
     })

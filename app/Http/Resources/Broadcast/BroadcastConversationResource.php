@@ -23,16 +23,16 @@ class BroadcastConversationResource extends Resource
                 'body' => $this->body,
                 'created_at' => $this->created_at->diffForHumans(),
                 'last_reply' => $this->last_reply ? $this->last_reply->diffForHumans() : null,
-                'participants_count' => $this->when($this->parent, $this->parent->usersExceptCurrentlyAuthenticated->count(), $this->usersExceptCurrentlyAuthenticated->count()),
+                'participants_count' => $this->parent ? $this->parent->usersExceptCurrentlyAuthenticated->count() : $this->usersExceptCurrentlyAuthenticated->count(),
                 'user' => (new BroadcastUserResource($this->user))->resolve(),
-                'users' => $this->when(!$this->isReply(), 
+                'users' => !$this->parent ? 
                     $this->users->map(function ($user) {
                         return (new BroadcastUserResource($user))->resolve();
-                    })->toArray(),
+                    })->toArray() :
                     $this->parent->users->map(function ($user) {
                         return (new BroadcastUserResource($user))->resolve();
                     })->toArray()
-                ),
+                ,
             ]
         ];
     }
