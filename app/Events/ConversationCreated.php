@@ -2,15 +2,17 @@
 
 namespace App\Events;
 
-use App\Http\Resources\ConversationResource;
 use App\Models\Conversation;
-
 use Illuminate\Broadcasting\Channel;
+
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
+use App\Transformers\ConversationTransformer;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+use App\Http\Resources\Broadcast\BroadcastConversationResource;
 
 class ConversationCreated implements ShouldBroadcast
 {
@@ -46,6 +48,6 @@ class ConversationCreated implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        return new ConversationResource($this->conversation);
+        return (new BroadcastConversationResource($this->conversation))->resolve();
     }
 }

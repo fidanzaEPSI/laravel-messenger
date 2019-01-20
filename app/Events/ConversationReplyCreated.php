@@ -3,14 +3,17 @@
 namespace App\Events;
 
 use App\Models\Conversation;
-use App\Http\Resources\ConversationResource;
-
 use Illuminate\Broadcasting\Channel;
+
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
+use App\Http\Resources\ConversationResource;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+use App\Http\Resources\Broadcast\BroadcastParentResource;
+use App\Http\Resources\Broadcast\BroadcastConversationResource;
 
 class ConversationReplyCreated implements ShouldBroadcast
 {
@@ -45,9 +48,12 @@ class ConversationReplyCreated implements ShouldBroadcast
 
         return $channels;
     }
-
     public function broadcastWith()
     {
-        return new ConversationResource($this->conversation);
+        $data = array_merge((new BroadcastConversationResource($this->conversation))->resolve(), [
+            'parent' => (new BroadcastParentResource($this->conversation->parent))->resolve(),
+        ]);
+        
+        return $data;
     }
 }

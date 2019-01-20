@@ -14,6 +14,7 @@
 
 <script>
     import api from '@/store/api/all'
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
         props: {
@@ -26,7 +27,11 @@
             api.getCurrentUser().then((response) => {
                 this.$store.commit('conversations/setCurrentUser', response.data.data)
             })
-        }
+        },
+        computed: mapGetters({
+            'user': 'conversations/getCurrentUser'
+        }),
+
     }
 </script>
 
