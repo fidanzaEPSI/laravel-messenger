@@ -18,7 +18,7 @@
                 <!-- Conversation -->
                 <ul class="list-unstyled">
                     <!-- Initial message -->
-                    <li class="media my-2">
+                    <li class="media align-items-start my-2">
                         <img :src="conversation.user.avatar" class="my-4 mr-4 align-self-center" alt="avatar">
                         <div class="media-body mt-0">
                             <div class="conversation-user">
@@ -28,8 +28,8 @@
                         </div>
                     </li>
                     <!-- Replies -->
-                    <li class="media" v-for="conversation in conversation.replies" :key="conversation.id">
-                        <img :src="conversation.user.avatar" class="my-4 mr-4 align-self-center" alt="avatar">
+                    <li class="media align-items-start" v-for="conversation in conversation.replies" :key="conversation.id">
+                        <img :src="conversation.user.avatar" class="my-4 mr-4 " alt="avatar">
                         <div class="media-body mt-0">
                             <div class="conversation-user">
                                 {{ conversation.user.name }} &bull; {{ conversation.created_at }}
