@@ -17,16 +17,16 @@
             <div class="card-body border-bottom overflow-auto">
                 <!-- Conversation -->
                 <ul class="list-unstyled">
-                    <!-- Replies -->
-                    <li class="media my-4" v-for="conversation in conversation.replies" :key="conversation.id">
+                    <!-- Initial message -->
+                    <li class="media my-4">
                         <img :src="conversation.user.avatar" class="align-self-center mr-3" alt="avatar">
                         <div class="media-body">
                             <p class="mt-0 mb-2"> {{ conversation.user.name }} &bull; {{ conversation.created_at }}</p>
                             {{ conversation.body }}
                         </div>
                     </li>
-                    <!-- Initial message -->
-                    <li class="media my-4">
+                    <!-- Replies -->
+                    <li class="media my-4" v-for="conversation in conversation.replies" :key="conversation.id">
                         <img :src="conversation.user.avatar" class="align-self-center mr-3" alt="avatar">
                         <div class="media-body">
                             <p class="mt-0 mb-2"> {{ conversation.user.name }} &bull; {{ conversation.created_at }}</p>

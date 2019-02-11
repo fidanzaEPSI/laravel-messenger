@@ -19,7 +19,7 @@ export const setCurrentConversation = (state, conversation) => {
 }
 
 export const appendReplyToConversation = (state, reply) => {
-    state.currentConversation.replies.unshift(reply.data)
+    state.currentConversation.replies.push(reply.data)
 }
 
 export const prependToConversations = (state, conversation) => {
