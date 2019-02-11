@@ -18,18 +18,22 @@
                 <!-- Conversation -->
                 <ul class="list-unstyled">
                     <!-- Initial message -->
-                    <li class="media my-4">
-                        <img :src="conversation.user.avatar" class="align-self-center mr-3" alt="avatar">
-                        <div class="media-body">
-                            <p class="mt-0 mb-2"> {{ conversation.user.name }} &bull; {{ conversation.created_at }}</p>
+                    <li class="media my-2">
+                        <img :src="conversation.user.avatar" class="my-4 mr-4 align-self-center" alt="avatar">
+                        <div class="media-body mt-0">
+                            <div class="conversation-user">
+                                {{ conversation.user.name }} &bull; {{ conversation.created_at }}
+                            </div>
                             {{ conversation.body }}
                         </div>
                     </li>
                     <!-- Replies -->
-                    <li class="media my-4" v-for="conversation in conversation.replies" :key="conversation.id">
-                        <img :src="conversation.user.avatar" class="align-self-center mr-3" alt="avatar">
-                        <div class="media-body">
-                            <p class="mt-0 mb-2"> {{ conversation.user.name }} &bull; {{ conversation.created_at }}</p>
+                    <li class="media" v-for="conversation in conversation.replies" :key="conversation.id">
+                        <img :src="conversation.user.avatar" class="my-4 mr-4 align-self-center" alt="avatar">
+                        <div class="media-body mt-0">
+                            <div class="conversation-user">
+                                {{ conversation.user.name }} &bull; {{ conversation.created_at }}
+                            </div> 
                             {{ conversation.body }}
                         </div>
                     </li>
@@ -88,5 +92,11 @@
     .slide-fade-enter, .slide-fade-leave-to {
         transform: translateX(20px);
         opacity: 0;
+    }
+    .media-body {
+        white-space: pre-line;
+    }
+    .conversation-user {
+        border-bottom: 1px solid #00000020;
     }
 </style>
