@@ -39,14 +39,9 @@ class PurgeConversations extends Command
      */
     public function handle()
     {
-        $this->info('This command will delete ALL conversations in the database.');
-        
-        if (!$this->confirm('Do you wish to continue?')) {
-            return;
-        }
-
         try {
-            DB::table('conversation_user')->truncate();
+            DB::table('conversations')->delete();
+            DB::table('conversation_user')->delete();
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
